@@ -2,11 +2,53 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ApolloProvider } from 'react-apollo';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient, gql } from 'apollo-boost';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const httpLink = createHttpLink({
+    uri: 'https://softdev-2019-generals.herokuapp.com/v1/graphql'
+})
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+    link: httpLink,
+    cache: cache
+})
+
+client.query({
+    query: gql`
+    query {
+        jerseys {
+            id
+            imageUrl
+            name
+            price
+        }
+    }
+  `
+  })
+  .then(res => console.log(res));
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ReactDOM.render(<ApolloProvider client={client}><BrowserRouter><App /></BrowserRouter></ApolloProvider>, document.getElementById('root'));

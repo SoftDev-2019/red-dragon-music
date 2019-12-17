@@ -1,0 +1,81 @@
+.navbarlarge-container {
+    height: 85px;
+    background: white;
+    max-width: 100%;
+
+    font-family: 'Arvo', serif;
+    .navbarlarge-container-row {
+        height: 85px;
+
+
+        .navbarlarge-container-row-left-col {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 85px;
+    
+            .navbar-brand {
+                font-family: 'Cookie', cursive;
+                color: red;
+                font-weight: bolder;
+                font-size: 2rem;
+            }
+            .nav-link {
+                color:rgb(26, 25, 25);
+                font-family: 'Arvo', serif;
+                font-size: 13px;
+
+            }
+            .nav-link:hover {
+                color: rgb(26,24,24);
+            }
+            
+    
+            .brand-span {
+                color: rgb(63, 87, 129);
+                font-family: 'Cookie', cursive;
+                font-size: 60px;
+            }
+
+            .brand-span:hover {
+                color: rgb(26,24,24);
+            }
+
+        }
+    
+        .navbarlarge-container-row-right-col {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 85px;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            margin-top: 5px;
+
+            .nav-link {
+                color:rgb(26, 25, 25);
+                font-family: 'Arvo', serif;
+                font-size: 15px;
+
+            }
+            .nav-link:hover {
+                color: rgb(26,24,24);
+            } 
+        }
+    }
+}
+    
+@media screen and (min-width: 768px) and (max-width: 900px) {
+    .navbarlarge-container-row-right-col-ul {
+        font-size: 13px;
+    }
+
+    .navbarlarge-container-row-left-col {
+        .nav-link {
+            color:white;
+            font-family: 'Arvo', serif;
+            font-size: 13px;
+        }
+    }
+}
