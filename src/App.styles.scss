@@ -7,9 +7,7 @@
         height: 1000px;
         font-family: 'Arvo', serif;
         background: rgb(26, 25, 25);
- 
-
-
+        
         .App-container-row-header {
             height: 82px;
             display: flex;
@@ -24,7 +22,8 @@
 
         .App-container-row-content {
             height: 920px;
-
+            border: 1px solid white;
+            color: whitesmoke;
         }
     }
 
