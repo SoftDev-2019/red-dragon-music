@@ -1,12 +1,20 @@
+
+.app {
+    margin: 0;
+    padding: 0;
+}
+
 .App-container {
-    height: 1000px;
+    min-height: 1050px;
     max-width: 100%;
     background: whitesmoke;
+    height: auto;
 
     .App-container-row {
-        height: 1000px;
+        height: 1050px;
         font-family: 'Arvo', serif;
         background: rgb(26, 25, 25);
+        
         
         .App-container-row-header {
             height: 82px;
@@ -15,15 +23,19 @@
             justify-content: center;
             font-size: 32px;
             color: white;
-            opacity: 0.85;
-
-    
+            opacity: 1;
         }
 
         .App-container-row-content {
             height: 920px;
-            border: 1px solid white;
             color: whitesmoke;
+
+            .App-container-row-content-title {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                padding-top: 20px;
+            }
         }
     }
 
