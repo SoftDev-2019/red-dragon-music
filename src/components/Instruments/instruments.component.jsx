@@ -38,10 +38,22 @@ class IntrumentCollectionPage extends Component {
         isPriceActive: !prevState.isPriceActive
       }));
     }
-
-
+    
     render() {
         let { instruments } = this.props;
+       
+        let brandName = instruments.map(item => item.name)
+        .filter((value, index, self) => self.indexOf(value) === index).sort()
+        
+        let modelName = instruments.map(item => item.model)
+        .filter((value, index, self) => self.indexOf(value) === index).sort()
+       
+        let priceName = instruments.map(item => item.price)
+        .filter((value, index, self) => self.indexOf(value) === index).sort()
+
+        let conditionName = instruments.map(item => item.condition)
+        .filter((value, index, self) => self.indexOf(value) === index).sort()
+
         return (
             <div className='container-fluid instrument-container'>
             <div className='row instrument-container-row'>
@@ -53,25 +65,45 @@ class IntrumentCollectionPage extends Component {
                         <h5 className='brand-filter' onClick={this.handleClickBrand}>&#9660; Brand</h5>
                             { this.state.isBrandActive ? (
                                 <div className='brand-filter-container'>
-
+                                { brandName.map( i => 
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                                        <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                    </div>
+                                    )}
                                 </div>
                             ) : ''}
                         <h5 className='model-filter' onClick={this.handleClickModel}>&#9660; Model</h5>
                         { this.state.isModelActive ? (
                                 <div className='brand-filter-container'>
-
+                                    { modelName.map( i => 
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                                            <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                        </div>
+                                        )}
                                 </div>
                             ) : ''}
                         <h5 className='condition-filter' onClick={this.handleClickCondition}>&#9660; Condition</h5>
                         { this.state.isConditionActive ? (
                                 <div className='brand-filter-container'>
-
+                                { conditionName.map( i => 
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                                            <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                        </div>
+                                        )}
                                 </div>
                             ) : ''}
                         <h5 className='price-filter' onClick={this.handleClickPrice}>&#9660; Price</h5>
                         { this.state.isPriceActive ? (
                                 <div className='brand-filter-container'>
-
+                                { priceName.map( i => 
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                                            <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                        </div>
+                                        )}
                                 </div>
                             ) : ''}
                     </div>
