@@ -1,6 +1,6 @@
 import React from 'react';
 import { default as IntrumentCollectionPage } from '../Instruments/instruments.container';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Lessons from '../lessons/lessons.component';
 import Specials from '../specials/specials.component';
 import HomePage from '../homepage/homepage.component';
@@ -8,22 +8,22 @@ import HomePage from '../homepage/homepage.component';
 const Routes = () => (
     <Switch>
         <Route 
-            exact='true'
+            exact
             path='/'
             render={() => <HomePage /> }
         />
         <Route 
-            exact='true'
+            exact
             path='/instruments' 
             render={() => <IntrumentCollectionPage /> }
         />
         <Route 
-            exact='true' 
+            exact
             path='/lessons' 
             render={() => <Lessons /> }
         />
          <Route 
-            exact='true' 
+            exact
             path='/specials' 
             render={() => <Specials /> }
         />
