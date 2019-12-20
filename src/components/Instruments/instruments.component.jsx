@@ -7,15 +7,21 @@ class IntrumentCollectionPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isAllActive: true,
             isBrandActive: '',
             isModelActive: '',
             isConditionActive: '',
-            isPriceActive: ''
+            isPriceActive: '',
+            brandVal: '',
+            modelVal: '',
+            conditionVal: '',
+            priceVal: '',
         };
         this.handleClickBrand=this.handleClickBrand.bind(this);
         this.handleClickModel=this.handleClickModel.bind(this);
         this.handleClickCondition=this.handleClickCondition.bind(this);
         this.handleClickPrice=this.handleClickPrice.bind(this);
+        this.handleChangeBrandVal = this.handleChangeBrandVal.bind(this);
     }
 
     handleClickBrand() {
@@ -38,7 +44,11 @@ class IntrumentCollectionPage extends Component {
         isPriceActive: !prevState.isPriceActive
       }));
     }
-    
+    handleChangeBrandVal(e) {
+        var val = e.target.value;
+        this.setState({ brandVal: val, isAllActive: '' });
+      }
+
     render() {
         let { instruments } = this.props;
        
@@ -54,6 +64,7 @@ class IntrumentCollectionPage extends Component {
         let conditionName = instruments.map(item => item.condition)
         .filter((value, index, self) => self.indexOf(value) === index).sort()
 
+        
         return (
             <div className='container-fluid instrument-container'>
             <div className='row instrument-container-row'>
@@ -66,42 +77,42 @@ class IntrumentCollectionPage extends Component {
                             { this.state.isBrandActive ? (
                                 <div className='brand-filter-container'>
                                 { brandName.map( i => 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-                                        <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                    <div className="form-check" key={i}>
+                                        <input className="form-check-input" type="radio" name="exampleRadios" onChange={this.handleChangeBrandVal} value={i} checked={this.state.brandVal === i } />
+                                        <label className="form-check-label" htmlFor="exampleRadios2">{i}</label>
                                     </div>
                                     )}
                                 </div>
                             ) : ''}
-                        <h5 className='model-filter' onClick={this.handleClickModel}>&#9660; Model</h5>
+                        <h5 className='brand-filter' onClick={this.handleClickModel}>&#9660; Model</h5>
                         { this.state.isModelActive ? (
                                 <div className='brand-filter-container'>
                                     { modelName.map( i => 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-                                            <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value={i} />
+                                            <label className="form-check-label" for="exampleRadios2">{i}</label>
                                         </div>
                                         )}
                                 </div>
                             ) : ''}
-                        <h5 className='condition-filter' onClick={this.handleClickCondition}>&#9660; Condition</h5>
+                        <h5 className='brand-filter' onClick={this.handleClickCondition}>&#9660; Condition</h5>
                         { this.state.isConditionActive ? (
                                 <div className='brand-filter-container'>
                                 { conditionName.map( i => 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-                                            <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value={i} />
+                                            <label className="form-check-label" for="exampleRadios2">{i}</label>
                                         </div>
                                         )}
                                 </div>
                             ) : ''}
-                        <h5 className='price-filter' onClick={this.handleClickPrice}>&#9660; Price</h5>
+                        <h5 className='brand-filter' onClick={this.handleClickPrice}>&#9660; Price</h5>
                         { this.state.isPriceActive ? (
                                 <div className='brand-filter-container'>
                                 { priceName.map( i => 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-                                            <label class="form-check-label" for="exampleRadios2">{i}</label>
+                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value={i} />
+                                            <label className="form-check-label" for="exampleRadios2">{i}</label>
                                         </div>
                                         )}
                                 </div>
@@ -109,7 +120,7 @@ class IntrumentCollectionPage extends Component {
                     </div>
                 </div>
                 <div className='col-9 instrument-container-row-col2'>
-                    {instruments.map( i => 
+                    { this.state.isAllActive ?  (instruments.map( i => 
                         <div className='instrument-item' key={i.id}>
                             <div
                                 className='image'
@@ -123,7 +134,23 @@ class IntrumentCollectionPage extends Component {
                                 <span className='price'>{i.price}</span>
                             </div>
                         </div>
-                    )}
+                    )) : 
+                    (instruments.filter(item => item.name === this.state.brandVal).map( i => 
+                        <div className='instrument-item' key={i.id}>
+                            <div
+                                className='image'
+                                style={{
+                                backgroundImage: `url(${i.imageUrl})`
+                                }}
+                            />
+                            <div className='instrument-footer'>
+                                <span className='name-model'>{i.name} {i.model}</span>
+                                <span className='condition'>{i.condition}</span>
+                                <span className='price'>{i.price}</span>
+                            </div>
+                        </div>
+                    ))
+                    }
                 </div>
             
             </div>            

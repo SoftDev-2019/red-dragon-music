@@ -1,19 +1,16 @@
 .instrument-container {
-    height: 900px;
-    display: flex;
-    flex-direction: row;
+    min-height: 900px;
     max-width: 100%;
     margin: 0;
     padding: 0;
 
     .instrument-container-row {
-        height: 900px;
+        min-height: 900px;
         max-width: 100%;
         font-family: 'Arvo', serif;
         background: rgb(26, 25, 25);
         display: flex;
         flex-direction: row;
-        max-width: 100%;
         margin: 0;
         padding: 0;
 
@@ -25,10 +22,12 @@
         }
         .instrument-container-row-col1 {
             height: 800px;
+            width: 100%;
             font-family: 'Arvo', serif;
             border: 1px solid rgb(222, 225, 236);
             display: flex;
             flex-direction: row;
+            overflow: scroll;
 
             .instrument-container-row-col1-brand-filter {
                 padding-top: 40px;
@@ -38,11 +37,11 @@
                 }
 
                 .brand-filter-container {
-                    min-height: 200px;
-                    border: 1px solid rgb(222, 225, 236);
+                    min-height: 100px;
                     height: auto;
                     color: white;
                     margin-bottom: 5px;
+                    margin-left: 20px;
                 }
             }
         }
@@ -50,9 +49,11 @@
         
         .instrument-container-row-col2 {
             min-width: 25%;
+            width: 100%;
             height: 800px;
             flex: 1 1 auto;
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: flex-start;
