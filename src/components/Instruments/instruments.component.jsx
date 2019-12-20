@@ -22,6 +22,7 @@ class IntrumentCollectionPage extends Component {
         this.handleClickCondition=this.handleClickCondition.bind(this);
         this.handleClickPrice=this.handleClickPrice.bind(this);
         this.handleChangeBrandVal = this.handleChangeBrandVal.bind(this);
+        this.handleChangeisAllActive = this.handleChangeisAllActive.bind(this);
     }
 
     handleClickBrand() {
@@ -48,6 +49,9 @@ class IntrumentCollectionPage extends Component {
         var val = e.target.value;
         this.setState({ brandVal: val, isAllActive: '' });
       }
+    handleChangeisAllActive(e) {
+    this.setState({ isAllActive: true });
+    }
 
     render() {
         let { instruments } = this.props;
@@ -76,6 +80,10 @@ class IntrumentCollectionPage extends Component {
                         <h5 className='brand-filter' onClick={this.handleClickBrand}>&#9660; Brand</h5>
                             { this.state.isBrandActive ? (
                                 <div className='brand-filter-container'>
+                                    <div className="form-check" key='all'>
+                                        <input className="form-check-input" type="radio" name="exampleRadios"  value="val" onChange={this.handleChangeisAllActive} checked={this.state.isAllActive === true } />
+                                        <label className="form-check-label" htmlFor="exampleRadios2">All</label>
+                                    </div>
                                 { brandName.map( i => 
                                     <div className="form-check" key={i}>
                                         <input className="form-check-input" type="radio" name="exampleRadios" onChange={this.handleChangeBrandVal} value={i} checked={this.state.brandVal === i } />
